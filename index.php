@@ -47,7 +47,7 @@
             ?>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 article">
                 <!--Запускаем цикл прербора массива для вывода на странице -->
-                <?php foreach ($news_one[0]['results'] as $value) : ?>
+                <?php foreach ($news_one[0]['results'] as $value) { ?>
 
                     <div class="col">
                         <div class="card shadow-sm">
@@ -66,15 +66,14 @@
                     if ($i == 9) {
                         break;
                     }
-                    ?>
-                <?php endforeach; ?>
+                } ?>
 
             </div>
         </div>
     </div>
     <div class="text-center buttons">
         <button type="button" class="btn btn-success">Сохранить в архив</button>
-        <a class="btn btn-dark" href="read.php" >Посмотреть архив</a>
+        <a class="btn btn-dark" href="read.php">Посмотреть архив</a>
     </div>
 
 </main>
@@ -90,16 +89,17 @@
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function(){
-        $(".btn-success").click(function(){
+    $(document).ready(function () {
+        $(".btn-success").click(function () {
             let articles = <?= $body;?>;
             $.ajax({
                 type: 'POST',
                 url: 'ajax/create.php',
                 data: {articles: articles},
-                success: function(data){
+                success: function (data) {
+                    alert(data);
                     $('.col').html('<h2 class="text-center">Запись сохранена</h2>');
-                    setTimeout(function(){
+                    setTimeout(function () {
                         location.reload();
                     }, 2000);
                 }
