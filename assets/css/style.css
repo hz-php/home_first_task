@@ -6,6 +6,15 @@
     user-select: none;
 }
 
+.buttons {
+    width: 100%;
+}
+
+.buttons button, .buttons a {
+    width: 20%;
+    margin: 30px 40px;
+}
+
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {
         font-size: 3.5rem;
