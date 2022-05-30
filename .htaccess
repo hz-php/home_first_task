@@ -1,5 +1,0 @@
-RewriteEngine on
-RewriteCond %{ENV:HTTPS} on
-RewriteRule ^.*$ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-RewriteCond %{HTTP_HOST} ^www.home-task\.loc$ [NC]
-RewriteRule ^(.*)$ http://home-task.loc/$1 [R=301,L]
