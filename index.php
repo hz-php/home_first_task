@@ -1,3 +1,7 @@
+<?php
+require_once 'Classes/ArticlesClass.php';
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,22 +31,9 @@
     <div class="album py-5 bg-light">
         <div class="container">
             <?php
-            // Через api и curl подключаемся к бесплатному агрегатору рандомных новостей
-            $ch = curl_init('https://newsdata.io/api/1/news?apikey=pub_7531e15acc5686c2a4618b2c72cdccbe2344&language=ru');
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_HEADER, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json',)
-            );
-
-            $result = curl_exec($ch);
-            $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-            $header = substr($result, 0, $header_size);
-            $body = substr($result, $header_size);
-            curl_close($ch);
-
+            $body = new \Classes\ArticlesClass();
+            $body = $body->apiQurey();
             $news[] = json_decode($body, true); //Переводим в массив json полученый запросом к api сохранем в массив
-
             $i = 0;// Создаю пременную для счётчика количества новостей
             ?>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 article">
@@ -98,7 +89,11 @@
                 data: {articles: articles},
                 success: function (data) {
                     alert(data);
-                    $('.col').html('<h2 class="text-center">Запись сохранена</h2>');
+                    if (data === "В таблицу articles добавлены новости") {
+                        $('.col').html('<h2 class="text-center">Запись сохранена</h2>');
+                    } else {
+                        $('.col').html('<h2 class="text-center">Запись не сохранена</h2>');
+                    }
                     setTimeout(function () {
                         location.reload();
                     }, 2000);
