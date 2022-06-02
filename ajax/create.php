@@ -1,6 +1,7 @@
 <?php
 //Подключаем файл соединения с бд
 require_once '../db/dbconn.php';
+
 try {
 //Перебираем массив данных новостей
     foreach ($_POST['articles']['results'] as $article) {

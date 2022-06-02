@@ -32,7 +32,11 @@ require_once 'db/dbconn.php';
         <div class="container">
             <?php
             //Делаем запрос в бд и сохраняем результатв ассоциативный массив
-            $sql = $conn->query("SELECT * FROM articles ORDER BY ID DESC ")->fetchAll(PDO::FETCH_ASSOC);
+
+            $connectionManager = new DbConnectionManager();
+            $connection = $connectionManager->getConnection();
+
+            $sql = $connection->query("SELECT * FROM articles ORDER BY ID DESC ")->fetchAll(PDO::FETCH_ASSOC);
             $i = 0;
             ?>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 article">

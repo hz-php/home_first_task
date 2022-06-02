@@ -41,13 +41,13 @@
             $body = substr($result, $header_size);
             curl_close($ch);
 
-            $news_one[] = json_decode($body, true); //Переводим в массив json полученый запросом к api сохранем в массив
+            $news[] = json_decode($body, true); //Переводим в массив json полученый запросом к api сохранем в массив
 
             $i = 0;// Создаю пременную для счётчика количества новостей
             ?>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 article">
                 <!--Запускаем цикл прербора массива для вывода на странице -->
-                <?php foreach ($news_one[0]['results'] as $value) { ?>
+                <?php foreach ($news[0]['results'] as $value) { ?>
 
                     <div class="col">
                         <div class="card shadow-sm">
