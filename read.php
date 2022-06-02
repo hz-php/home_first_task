@@ -1,6 +1,7 @@
 <?php
 //Подключение к бд
-require_once 'db/dbconn.php';
+require_once 'Db/DbConnectionManager.php';
+require_once 'Db/QueryManager.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -32,7 +33,12 @@ require_once 'db/dbconn.php';
         <div class="container">
             <?php
             //Делаем запрос в бд и сохраняем результатв ассоциативный массив
-            $sql = $conn->query("SELECT * FROM articles ORDER BY ID DESC ")->fetchAll(PDO::FETCH_ASSOC);
+
+            $connectionManager = new \Db\DbConnectionManager();
+            $connection = $connectionManager->getConnection();
+            $query = new \Db\QueryManager();
+            $query = $query->getArticles();
+            $sql = $connection->query($query)->fetchAll(PDO::FETCH_ASSOC);
             $i = 0;
             ?>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 article">

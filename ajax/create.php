@@ -1,8 +1,16 @@
 <?php
 //Подключаем файл соединения с бд
-require_once '../db/dbconn.php';
+require_once '../Db/DbConnectionManager.php';
+require_once '../Db/QueryManager.php';
+
+
 try {
 //Перебираем массив данных новостей
+    $connectionManager = new \Db\DbConnectionManager();
+    $connection = $connectionManager->getConnection();
+    $sql = new \Db\QueryManager();
+    $sql = $sql->setArticles();
+    $statement = $connection->prepare($sql);
     foreach ($_POST['articles']['results'] as $article) {
         $data = [
             'title' => $article['title'],
@@ -12,13 +20,11 @@ try {
             'pubDate' => $article['pubDate'],
             'category' => $article['category'][0]
         ];
-//Подготавливаем запрос в бд и выполняем его
-        $sql = "INSERT INTO articles (title, link, keywords, description, pubDate, category) VALUES (:title, :link, :keywords, :description, :pubDate, :category)";
-        $statement = $conn->prepare($sql);
+        //Выполняем запрос
         $statement->execute($data);
-
     }
-    echo "В таблицу articles добавлено 9 новостей";
+
+    echo "В таблицу articles добавлены новости";
 } catch (PDOException $e) {
     echo "Database error: " . $e->getMessage();
 }
