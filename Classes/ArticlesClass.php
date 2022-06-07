@@ -1,9 +1,7 @@
 <?php
-
-
 namespace Classes;
-require_once 'ApiQuery.php';
 
+use Classes\ApiQuery;
 
 class ArticlesClass extends ApiQuery
 {

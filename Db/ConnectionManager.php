@@ -1,8 +1,6 @@
 <?php
 
-
 namespace db;
-
 
 interface ConnectionManager
 {

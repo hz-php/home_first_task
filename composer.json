@@ -1,0 +1,11 @@
+{
+    "name": "sia04/home-task.loc",
+    "autoload": {
+        "psr-4": {
+            "Sia04\\HomeTaskLoc\\": "src/",
+            "Classes\\": "Classes/",
+            "Db\\": "Db/"
+        }
+    },
+    "require": {}
+}

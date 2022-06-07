@@ -2,8 +2,8 @@
 
 namespace Db;
 
-require_once 'ConnectionManager.php';
-
+use PDO;
+use Db\ConnectionManager;
 
 class DbConnectionManager implements ConnectionManager
 {
@@ -11,7 +11,7 @@ class DbConnectionManager implements ConnectionManager
 
     public function __construct()
     {
-        $this->conn = new \PDO('mysql:host=localhost;dbname=test_task;charset=utf8', 'root', '');
+        $this->conn = new PDO('mysql:host=localhost;dbname=test_task;charset=utf8', 'root', 'root');
 
     }
 

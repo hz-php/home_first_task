@@ -1,14 +1,15 @@
 <?php
-//Подключаем файл соединения с бд
-require_once '../Db/DbConnectionManager.php';
-require_once '../Db/QueryManager.php';
+require_once "../vendor/autoload.php";
 
+//Подключаем файл соединения с бд
+use Db\DbConnectionManager;
+use Db\QueryManager;
 
 try {
 //Перебираем массив данных новостей
-    $connectionManager = new \Db\DbConnectionManager();
+    $connectionManager = new DbConnectionManager();
     $connection = $connectionManager->getConnection();
-    $sql = new \Db\QueryManager();
+    $sql = new QueryManager();
     $sql = $sql->setArticles();
     $statement = $connection->prepare($sql);
     foreach ($_POST['articles']['results'] as $article) {
@@ -23,7 +24,6 @@ try {
         //Выполняем запрос
         $statement->execute($data);
     }
-
     echo "В таблицу articles добавлены новости";
 } catch (PDOException $e) {
     echo "Database error: " . $e->getMessage();

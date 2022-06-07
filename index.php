@@ -1,5 +1,8 @@
 <?php
-require_once 'Classes/ArticlesClass.php';
+require_once "vendor/autoload.php";
+
+use Classes\ArticlesClass;
+
 ?>
 
 <!doctype html>
@@ -31,7 +34,7 @@ require_once 'Classes/ArticlesClass.php';
     <div class="album py-5 bg-light">
         <div class="container">
             <?php
-            $body = new \Classes\ArticlesClass();
+            $body = new ArticlesClass();
             $body = $body->apiQurey();
             $news[] = json_decode($body, true); //Переводим в массив json полученый запросом к api сохранем в массив
             $i = 0;// Создаю пременную для счётчика количества новостей
@@ -47,7 +50,8 @@ require_once 'Classes/ArticlesClass.php';
                                 <p class="card-text"><?= $value['description'] ?></p>
                                 <div class="d-flex justify-content-between align-items-center">
 
-                                    <a href="<?= $value['link'] ?>" target="_blank"><small class="text-muted">Подробнее</small></a>
+                                    <a href="<?= $value['link'] ?>" target="_blank"><small
+                                                class="text-muted">Подробнее</small></a>
                                 </div>
                             </div>
                         </div>

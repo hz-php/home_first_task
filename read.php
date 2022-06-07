@@ -1,7 +1,10 @@
 <?php
+require_once "vendor/autoload.php";
+
 //Подключение к бд
-require_once 'Db/DbConnectionManager.php';
-require_once 'Db/QueryManager.php';
+use Db\ConnectionManager;
+use Db\QueryManager;
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -33,17 +36,20 @@ require_once 'Db/QueryManager.php';
         <div class="container">
             <?php
             //Делаем запрос в бд и сохраняем результатв ассоциативный массив
-
-            $connectionManager = new \Db\DbConnectionManager();
+            $connectionManager = new DbConnectionManager();
             $connection = $connectionManager->getConnection();
-            $query = new \Db\QueryManager();
+            $query = new QueryManager();
             $query = $query->getArticles();
-            $sql = $connection->query($query)->fetchAll(PDO::FETCH_ASSOC);
+            $sql = $connection->query($query);
+            if ($sql !== false) {
+                $sql = $sql->fetchAll(PDO::FETCH_ASSOC);
+            }
             $i = 0;
+            if (!empty($sql)) :
             ?>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 article">
                 <!--Запускаем цикл прербора массива для вывода на странице -->
-                <?php foreach ($sql as $key => $value) : ?>
+                <?php foreach ($sql as $key => $value) { ?>
 
                     <div class="col">
                         <div class="card shadow-sm">
@@ -63,11 +69,16 @@ require_once 'Db/QueryManager.php';
                         break;
                     }
                     ?>
-                <?php endforeach; ?>
+                <?php } ?>
 
             </div>
         </div>
     </div>
+    <?php else: ?>
+    <div class="container">
+        <h2 style="text-align: center;">В базе данных нет записей</h2>
+    </div>
+    <?php endif;?>
     <div class="text-center buttons">
         <a class="btn btn-success" href="index.php">Главная</a>
     </div>
