@@ -2,6 +2,7 @@
 require_once "vendor/autoload.php";
 
 use Classes\ArticlesClass;
+use Classes\CurrencyClass;
 
 ?>
 
@@ -29,8 +30,66 @@ use Classes\ArticlesClass;
             </div>
         </div>
     </section>
+    <section class="py-5 text-center container">
+        <?php
+        //Получаем список валют
+        $currency_array = new CurrencyClass();
+        $currency_array = $currency_array->apiQurey();
+        $currency_array = json_decode($currency_array, true);
+        $array_fin[] = $currency_array['Valute'];
+        ?>
+        <div class="head_currency">
+            <div class="date">
+                <h2 class="text-center">Дата</h2>
+                <h3 class="text-center"><?= mb_strimwidth($currency_array['Date'], 0, 10); ?></h3>
+            </div>
+            <div class="time">
+                <h3 class="text-center">Время</h3>
+                <h3 class="text-center"><?= substr(mb_strimwidth($currency_array['Date'], 11, 14), 0, 5); ?></h3>
+            </div>
+        </div>
+        <div class="converter">
+            <h3 class="text-center">Онлайн конвертер</h3>
+            <form action="" method="post">
+                <div class="type_cur">
+                    <label for="cur">Выберите валюту</label>
+                    <select name="cur" id="cur">
+                        <?php
+                        foreach ($array_fin[0] as $key => $value) {
+                            ?>
+                            <option value="<?= $value['CharCode'] ?>"> <?= $value['Name']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="nal">
+                    <label for="summ">Введите сумму</label>
+                    <input type="number" min="0.000" max="1000000.000" step="0.01" id="summ">
+                </div>
+
+                <div class="nal">
+                    <label for="result">Результат</label>
+                    <input type="number" min="1.00" max="1000000.00" step="0.01" id="result" value="" placeholder="Рос. рублей">
+                    <span></span>
+                </div>
+            </form>
+        </div>
+        <h3 class="text-center">Курсы валют в настоящее время</h3>
+        <div class="currency_block">
+            <?php
+            foreach ($array_fin[0] as $key => $currency) {
+
+                ?>
+                <div class="currency">
+                    <div class="name">Валюта <?= $currency['Name']; ?> обозначение: <?= $currency['CharCode']; ?></div>
+
+                    <div class="value">Курс на текучий текущий момент: <b><?= $currency['Value']; ?></b></div>
+                </div>
+            <?php } ?>
+        </div>
+    </section>
 </header>
 <main>
+
     <div class="album py-5 bg-light">
         <div class="container">
             <?php
@@ -77,12 +136,13 @@ use Classes\ArticlesClass;
 
 </footer>
 
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script
         src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
+<script src="assets/js/script.js"></script>
+
 <script>
     $(document).ready(function () {
         $(".btn-success").click(function () {

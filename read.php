@@ -36,7 +36,7 @@ use Db\QueryManager;
         <div class="container">
             <?php
             //Делаем запрос в бд и сохраняем результатв ассоциативный массив
-            $connectionManager = new DbConnectionManager();
+            $connectionManager = new \Db\DbConnectionManager();
             $connection = $connectionManager->getConnection();
             $query = new QueryManager();
             $query = $query->getArticles();

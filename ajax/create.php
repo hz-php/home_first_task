@@ -14,12 +14,12 @@ try {
     $statement = $connection->prepare($sql);
     foreach ($_POST['articles']['results'] as $article) {
         $data = [
-            'title' => $article['title'],
-            'link' => $article['link'],
-            'keywords' => $article['keywords'][0],
-            'description' => $article['description'],
-            'pubDate' => $article['pubDate'],
-            'category' => $article['category'][0]
+            'title' => !empty($article['title']) ? $article['title'] : "",
+            'link' => !empty($article['link']) ? $article['link'] : "",
+            'keywords' => !empty($article['keywords']) ? $article['keywords'][0] : "",
+            'description' => !empty($article['description']) ? $article['description'] : "",
+            'pubDate' => !empty($article['pubDate']) ? $article['pubDate'] : "",
+            'category' => !empty($article['category']) ? $article['category'][0] : ""
         ];
         //Выполняем запрос
         $statement->execute($data);
