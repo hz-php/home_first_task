@@ -28,3 +28,4 @@ summ.addEventListener("change", function () {
         }
     });
 });
+

@@ -15,7 +15,7 @@ class DbConnectionManager implements ConnectionManager
 
     }
 
-    public function getConnection()
+    public function getConnection(): object
     {
         return $this->conn;
     }

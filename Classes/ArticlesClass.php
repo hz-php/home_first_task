@@ -9,7 +9,7 @@ class ArticlesClass extends ApiQuery
 {
     public $body;
 
-    function apiQurey()
+    function apiQurey(): string
     {
         $client = new Client();
         $response = $client->request('GET', 'https://newsdata.io/api/1/news?apikey=pub_7531e15acc5686c2a4618b2c72cdccbe2344&language=ru');

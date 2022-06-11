@@ -1,11 +1,8 @@
 <?php
 
-
 namespace Classes;
-
 
 abstract class ApiQuery
 {
-    abstract function apiQurey();
-
+    abstract function apiQurey(): string;
 }

@@ -4,7 +4,7 @@ namespace Db;
 
 class QueryManager
 {
-    private $query;
+    private string $query;
 
     public function setArticles(): string
     {

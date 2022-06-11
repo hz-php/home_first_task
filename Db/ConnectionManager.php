@@ -4,5 +4,5 @@ namespace db;
 
 interface ConnectionManager
 {
-    public function getConnection();
+    public function getConnection(): object;
 }
