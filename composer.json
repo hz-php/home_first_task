@@ -4,6 +4,7 @@
         "psr-4": {
             "Sia04\\HomeTaskLoc\\": "src/",
             "Classes\\": "Classes/",
+            "Classes\\ArrayClasses\\": "Classes/ArrayClasses",
             "Db\\": "Db/"
         }
     },

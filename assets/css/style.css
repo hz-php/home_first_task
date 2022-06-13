@@ -54,3 +54,34 @@
 .nal input, .type_cur select {
     height: 25px;
 }
+.random_array {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.random_array input {
+    margin-bottom: 30px;
+}
+.sort_button {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin: 30px auto;
+}
+.sort_button input {
+    width: 30%;
+    margin: 5px;
+}
+.search {
+    display: flex;
+    flex-direction: column;
+}
+.search select {
+    width: 55%;
+    margin: 10px auto;
+}
+
+.search input {
+    width: 15%;
+    margin: 10px auto;
+}
