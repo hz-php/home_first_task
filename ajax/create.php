@@ -24,7 +24,7 @@ try {
         //Выполняем запрос
         $statement->execute($data);
     }
-    echo "В таблицу articles добавлены новости";
+    echo "yes";
 } catch (PDOException $e) {
     echo "Database error: " . $e->getMessage();
 }

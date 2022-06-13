@@ -3,7 +3,7 @@ require_once "vendor/autoload.php";
 
 use Classes\ArticlesClass;
 use Classes\CurrencyClass;
-
+use Classes\ArrayClasses\SortClass;
 ?>
 
 <!doctype html>
@@ -26,7 +26,52 @@ use Classes\CurrencyClass;
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h2>Home task</h2>
+                <span>Home task</span>
+                <p>Веддите пожалуйста диапозон чисел массива</p>
+                <form action="" method="POST" class="random_array">
+                    <input type="text" id="one_index" class="inp_ind" placeholder="введите первое число массива" required="required" >
+                    <input type="text" id="two_index" class="inp_ind" placeholder="введите конечное число массива" required="required">
+                    <button class="gen_arr" id="gen_array" >Сгенерировть массив</button>
+                </form>
+                <form action="" method="POST" class="sort_button">
+                    <?php
+                    $buttons = [
+                      'Сортировка пузырьком',
+                      'Сортировка вставками',
+                      'Сортировка слиянием',
+                      'Быстрая сортировка',
+                      'ортировка вставками',
+                    ];
+                    ?>
+                    <input type="button" class="type_sort" id="bubble" name="Сортировка пузырьком" value="Сортировка пузырьком">
+                    <input type="button" class="type_sort" id="ins" name="ортировка вставками" value="Сортировка вставками">
+                    <input type="button" class="type_sort" id="merg" name="Сортировка слиянием" value="Сортировка слиянием">
+                    <input type="button" class="type_sort" id="fast" name="Быстрая сортировка" value="Быстрая сортировка">
+                    <input type="button" class="type_sort" id="select" name="Сортировка выбором" value="Сортировка выбором">
+                </form>
+                <form action="" class="search">
+                    <select name="type_search" id="type_search">
+                        <option value="Последовательный поиск">Последовательный поиск</option>
+                        <option value="Индексно–последовательный поиск">Индексно – последовательный поиск</option>
+                        <option value="Бинарный поиск">Бинарный поиск</option>
+                    </select>
+                    <select name="type_search" id="type_search_array">
+                        <option value="Несортированнный">Несортированный массив</option>
+                        <option value="Сортированый">Сортированный массив</option>
+                    </select>
+                    <label for="search_numb">Введите число для поиска</label>
+                    <input type="number" id="search_numb">
+                    <input type="button" id="search" value="Найти">
+                    <h3 class="search_title"></h3>
+                    <span class="search_result"></span>
+                </form>
+                <h3>Сгенерированный массив</h3>
+                <span class="type_sort"></span>
+                <br>
+                <span class="sort_array text-center" style="word-wrap: break-word;"></span>
+                <br>
+                <span class="generated_array text-center" style="word-wrap: break-word;"></span>
+
             </div>
         </div>
     </section>
@@ -137,23 +182,20 @@ use Classes\CurrencyClass;
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script
-        src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="assets/js/script.js"></script>
-
 <script>
     $(document).ready(function () {
         $(".btn-success").click(function () {
-            let articles = <?= $body;?>;
+            let articles = <?= $body ?>;
             $.ajax({
                 type: 'POST',
                 url: 'ajax/create.php',
-                data: {articles: articles},
+                data: {
+                    articles: articles
+                },
                 success: function (data) {
-                    alert(data);
-                    if (data === "В таблицу articles добавлены новости") {
+                    if (data === "yes") {
                         $('.col').html('<h2 class="text-center">Запись сохранена</h2>');
                     } else {
                         $('.col').html('<h2 class="text-center">Запись не сохранена</h2>');
