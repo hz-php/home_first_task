@@ -34,15 +34,6 @@ use Classes\ArrayClasses\SortClass;
                     <button class="gen_arr" id="gen_array" >Сгенерировть массив</button>
                 </form>
                 <form action="" method="POST" class="sort_button">
-                    <?php
-                    $buttons = [
-                      'Сортировка пузырьком',
-                      'Сортировка вставками',
-                      'Сортировка слиянием',
-                      'Быстрая сортировка',
-                      'ортировка вставками',
-                    ];
-                    ?>
                     <input type="button" class="type_sort" id="bubble" name="Сортировка пузырьком" value="Сортировка пузырьком">
                     <input type="button" class="type_sort" id="ins" name="ортировка вставками" value="Сортировка вставками">
                     <input type="button" class="type_sort" id="merg" name="Сортировка слиянием" value="Сортировка слиянием">
