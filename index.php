@@ -27,6 +27,7 @@ use Classes\ArrayClasses\SortClass;
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <span>Home task</span>
+
                 <p>Веддите пожалуйста диапозон чисел массива</p>
                 <form action="" method="POST" class="random_array">
                     <input type="text" id="one_index" class="inp_ind" placeholder="введите первое число массива" required="required" >
@@ -48,7 +49,7 @@ use Classes\ArrayClasses\SortClass;
                     </select>
                     <select name="type_search" id="type_search_array">
                         <option value="Несортированнный">Несортированный массив</option>
-                        <option value="Сортированый">Сортированный массив</option>
+                        <option value="Сортированный">Сортированный массив</option>
                     </select>
                     <label for="search_numb">Введите число для поиска</label>
                     <input type="number" id="search_numb">
