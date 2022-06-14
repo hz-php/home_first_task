@@ -19,7 +19,8 @@ if ($type_search_array == "Несортированнный" && $type_search == 
             shuffle($array);
             $search = new SearchClass();
             $search = $search->consistentSearch($search_numb, $array);
-            print_r(json_encode($array) . "Индекс значения в массиве " . $search);
+            $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
+            print_r(json_encode($array) . "Индекс значения в массиве " . $search . "Время выпонения $time ms.");
         } else {
             echo "Введите значения массива";
         }
@@ -36,7 +37,8 @@ if ($type_search_array == "Сортированный" && $type_search == 'По�
             $array = $array->setArray($one, $two);
             $search = new SearchClass();
             $search = $search->consistentSearch($search_numb, $array);
-            print_r(json_encode($array) . "Индекс значения в массиве " . $search);
+            $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
+            print_r(json_encode($array) . "Индекс значения в массиве " . $search . "Время выпонения $time ms.");
         } else {
             echo "Введите значения массива";
         }
@@ -53,7 +55,8 @@ if ($type_search_array == "Сортированнный" && $type_search == 'И�
             $array = $array->setArray($one, $two);
             $search = new SearchClass();
             $search = $search->consIndSearch($search_numb, $array);
-            print_r(json_encode($array) . "Индекс значения в массиве " . $search);
+            $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
+            print_r(json_encode($array) . "Индекс значения в массиве " . $search . "Время выпонения $time ms.");
         } else {
             echo "Введите значения массива";
         }
@@ -74,8 +77,8 @@ if ($type_search == 'Бинарный поиск' && $type_search_array == "Со
             $array = $array->setArray($one, $two);
             $search = new SearchClass();
             $search = $search->binarySearch($search_numb, $array);
-            print_r("Массив" . json_encode($array) . "Индекс значения в массиве " . $search);
-
+            $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
+            print_r(json_encode($array) . "Индекс значения в массиве " . $search . "Время выпонения $time ms.");
         } else {
             echo "Введите значения массива";
         }
